@@ -1,5 +1,7 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router'
 import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
@@ -11,10 +13,11 @@ import {
 
 import { DropdownModule, SidebarModule } from '@coreui/angular';
 import { IconSetService } from '@coreui/icons-angular';
+import { FormsModule } from '@angular/forms'; // Importer FormsModule
 import { routes } from './app.routes';
-
 export const appConfig: ApplicationConfig = {
   providers: [
+    HttpClientModule,
     provideRouter(routes,
       withRouterConfig({
         onSameUrlNavigation: 'reload'
@@ -27,7 +30,7 @@ export const appConfig: ApplicationConfig = {
       withViewTransitions(),
       withHashLocation()
     ),
-    importProvidersFrom(SidebarModule, DropdownModule),
+    importProvidersFrom(SidebarModule, DropdownModule, FormsModule), // Ajouter FormsModule aux providers
     IconSetService,
     provideAnimations()
   ]

@@ -1,0 +1,77 @@
+<div class="liste-rdv">
+  <c-row>
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-header ngPreserveWhitespaces>
+          <strong>Liste Des Rendez-Vous</strong> <small>(Tableau Des Rendez-Vous)</small>
+        </c-card-header>
+        <c-card-body>
+          <p class="text-body-secondary small">
+            Assurez-vous que toutes les informations sont exactes avant de soumettre. Vous pouvez également rechercher, modifier et supprimer les informations des rendez-vous.
+          </p>
+          <div class="input-group mb-3 search-container">
+            <input type="date" class="form-control" [(ngModel)]="selectedDate" (change)="filterByDate()" placeholder="Sélectionner une date">
+            <input type="text" class="form-control" placeholder="Rechercher un rendez-vous..." aria-label="Rechercher un rendez-vous" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Chercher</button>
+          </div>
+          <table class="table table-hover table-outline mb-0 d-none d-sm-table">
+            <thead class="thead-light">
+              <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Description</th>
+                <th>Médecin</th>
+                <th>Patient</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let rdv of rdvs">
+                <td>{{ rdv.id }}</td>
+                <td>{{ rdv.date_rdv }}</td>
+                <td>{{ rdv.heure }}</td>
+                <td>{{ rdv.description }}</td>
+                <td>{{ rdv.medecin.nom }} {{ rdv.medecin.prenom }}</td>
+                <td>{{ rdv.patient.nom }} {{ rdv.patient.prenom }}</td>
+                <td>
+                  <button (click)="openEditPopup(rdv)" class="btn btn-primary">Modifier</button>
+                  <button (click)="deleteRdv(rdv)" class="btn btn-danger">Supprimer</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="form-popup" *ngIf="showEditPopup">
+            <form class="form-container">
+              <h1>Modifier le Rendez-Vous</h1>
+
+              <div class="form-row">
+                <div class="input-col">
+                  <label for="date_rdv"><b>Date</b></label>
+                  <input type="date" [(ngModel)]="selectedRdv.date_rdv" name="date_rdv" required>
+                </div>
+                <div class="input-col">
+                  <label for="heure"><b>Heure</b></label>
+                  <input type="time" [(ngModel)]="selectedRdv.heure" name="heure" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="input-col">
+                  <label for="description"><b>Description</b></label>
+                  <input type="text" [(ngModel)]="selectedRdv.description" name="description" required>
+                </div>
+              </div>
+
+              <div class="button-group">
+                <button type="button" (click)="updateRdv()" class="btn btn-success">Enregistrer</button>
+                <button type="button" (click)="closeEditPopup()" class="btn btn-secondary cancel">Annuler</button>
+              </div>
+            </form>
+          </div>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+</div>

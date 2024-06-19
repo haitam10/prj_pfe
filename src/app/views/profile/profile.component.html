@@ -1,0 +1,92 @@
+<c-row>
+  <c-col xs="12">
+    <c-card class="mb-4">
+      <c-card-header ngPreserveWhitespaces>
+        <strong>Profil Secrétaire</strong> <small> (Informations de profil)</small>
+      </c-card-header>
+      <c-card-body>
+        <p class="text-body-secondary small">
+          Veuillez remplir le formulaire ci-dessous pour mettre à jour votre profil .
+        </p>
+
+        <!-- Image de profil secrétaire -->
+        <div class="text-center mb-4">
+          <img src="./assets/images/avatars/8.jpg" alt="Profil Secrétaire" class="rounded-circle" width="150" height="150">
+        </div>
+        
+        <form #profileForm="ngForm"
+              (ngSubmit)="onSubmit()"
+              [validated]="formValidated"
+              cForm
+              class="row g-3 needs-validation">
+          
+          <c-col md="4">
+            <label cLabel for="cin">CIN</label>
+            <c-input-group class="has-validation">
+              <span cInputGroupText id="inputGroupPrepend">🔢</span>
+              <input cFormControl id="cin" required type="text" />
+              <c-form-feedback [valid]="false">Veuillez fournir un CIN valide.</c-form-feedback>
+            </c-input-group>
+          </c-col>
+          
+          <c-col md="4">
+            <label cLabel for="lastName">Nom</label>
+            <c-input-group class="has-validation">
+              <span cInputGroupText id="inputGroupPrepend">👥</span>
+              <input cFormControl id="lastName" required type="text" />
+              <c-form-feedback [valid]="true">Parfait!</c-form-feedback>
+            </c-input-group>
+          </c-col>
+          
+          <c-col md="4">
+            <label cLabel for="firstName">Prénom</label>
+            <c-input-group class="has-validation">
+              <span cInputGroupText id="inputGroupPrepend">👤</span>
+              <input cFormControl id="firstName" required type="text" />
+              <c-form-feedback [valid]="true">Parfait!</c-form-feedback>
+            </c-input-group>
+          </c-col>
+          
+          <c-col md="4">
+            <label cLabel for="telephone">Téléphone</label>
+            <c-input-group class="has-validation">
+              <span cInputGroupText id="inputGroupPrepend">📞</span>
+              <input cFormControl id="telephone" required type="tel" />
+              <c-form-feedback [valid]="false">Veuillez fournir un numéro de téléphone valide.</c-form-feedback>
+            </c-input-group>
+          </c-col>
+          
+          <c-col md="4">
+            <label cLabel for="username">Nom d'utilisateur</label>
+            <c-input-group class="has-validation">
+              <span cInputGroupText id="inputGroupPrepend">👤</span>
+              <input cFormControl id="username" required type="text" />
+              <c-form-feedback [valid]="true">Parfait!</c-form-feedback>
+            </c-input-group>
+          </c-col>
+          
+          <c-col md="4">
+            <label cLabel for="password">Mot de passe</label>
+            <c-input-group class="has-validation">
+              <span cInputGroupText id="inputGroupPrepend">🔒</span>
+              <input [type]="passwordFieldType" cFormControl id="password" required />
+              <span cInputGroupText (click)="togglePasswordVisibility()">
+                <i [class]="passwordFieldIcon"></i>
+              </span>
+              <c-form-feedback [valid]="false">Veuillez fournir un mot de passe valide.</c-form-feedback>
+            </c-input-group>
+          </c-col>
+          
+          <c-col xs="12">
+            <button cButton class="me-1" color="primary" type="submit">
+              Soumettre
+            </button>
+            <button (click)="onReset()" cButton color="secondary" type="reset">
+              Réinitialiser
+            </button>
+          </c-col>
+        </form>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>

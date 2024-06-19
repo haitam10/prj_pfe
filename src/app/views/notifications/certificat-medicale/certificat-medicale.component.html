@@ -1,0 +1,41 @@
+<div class="liste-certificats">
+    <c-row>
+      <c-col xs="12">
+        <c-card class="mb-4">
+          <c-card-header ngPreserveWhitespaces>
+            <strong>Liste des Certificats Médicaux</strong> <small>(Tableau des Certificats)</small>
+          </c-card-header>
+          <c-card-body>
+            <div class="input-group mb-3 search-container">
+              <input type="date" class="form-control" [(ngModel)]="selectedDate" (change)="filterByDate()" placeholder="Sélectionner une date de réalisation">
+              <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="filterByText()" placeholder="Rechercher un certificat médical..." aria-label="Rechercher un certificat médical" aria-describedby="button-addon2">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2">Chercher</button>
+            </div>
+            <table class="table table-hover table-outline mb-0 d-none d-sm-table">
+              <thead class="thead-light">
+                <tr>
+                  <th>ID</th>
+                  <th>Date Réalisation</th>
+                  <th>Médecin</th>
+                  <th>Patient</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let certificat of filteredCertificats">
+                  <td>{{ certificat.id }}</td>
+                  <td>{{ certificat.date_realisation }}</td>
+                  <td>{{ certificat.medecin.nom }} {{ certificat.medecin.prenom }}</td>
+                  <td>{{ certificat.patient.nom }} {{ certificat.patient.prenom }}</td>
+                  <td>
+                    <button (click)="printCertificat(certificat)" class="btn btn-warning">Imprimer</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </c-card-body>
+        </c-card>
+      </c-col>
+    </c-row>
+  </div>
+  

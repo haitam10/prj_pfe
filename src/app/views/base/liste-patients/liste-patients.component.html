@@ -1,0 +1,96 @@
+<div class="liste-patients">
+  <c-row>
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-header ngPreserveWhitespaces>
+          <strong>Liste Des Patients</strong> <small>(Tableau Des Patients)</small>
+        </c-card-header>
+        <c-card-body>
+          <p class="text-body-secondary small">
+            Assurez-vous que toutes les informations sont exactes avant de soumettre. Vous pouvez également rechercher, modifier et supprimer les informations des patients.
+          </p>
+          <div class="input-group mb-3 search-container">
+            <input type="text" class="form-control" placeholder="Rechercher un patient..." aria-label="Rechercher un patient" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Chercher</button>
+          </div>
+          <table class="table table-hover table-outline mb-0 d-none d-sm-table">
+            <thead class="thead-light">
+              <tr>
+                <th>ID</th>
+                <th>CIN</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de Naissance</th>
+                <th>Sexe</th>
+                <th>Téléphone</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let patient of patients">
+                <td>{{ patient.id }}</td>
+                <td>{{ patient.cin }}</td>
+                <td>{{ patient.nom }}</td>
+                <td>{{ patient.prenom }}</td>
+                <td>{{ patient.dateNaissance }}</td>
+                <td>{{ patient.sexe }}</td>
+                <td>{{ patient.telephone }}</td>
+                <td>
+                  <button (click)="openEditPopup(patient)" class="btn btn-primary">Modifier</button>
+                  <button (click)="deletePatient(patient)" class="btn btn-danger">Supprimer</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="form-popup" *ngIf="showEditPopup">
+            <form class="form-container">
+              <h1>Modifier le Patient</h1>
+
+              <div class="form-row">
+                <div class="input-col">
+                  <label for="cin"><b>CIN</b></label>
+                  <input type="text" [(ngModel)]="selectedPatient.cin" name="cin" required>
+                </div>
+                <div class="input-col">
+                  <label for="nom"><b>Nom</b></label>
+                  <input type="text" [(ngModel)]="selectedPatient.nom" name="nom" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="input-col">
+                  <label for="prenom"><b>Prénom</b></label>
+                  <input type="text" [(ngModel)]="selectedPatient.prenom" name="prenom" required>
+                </div>
+                <div class="input-col">
+                  <label for="dateNaissance"><b>Date de Naissance</b></label>
+                  <input type="date" [(ngModel)]="selectedPatient.dateNaissance" name="dateNaissance" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="input-col">
+                  <label for="sex"><b>Sexe</b></label>
+                  <select [(ngModel)]="selectedPatient.sexe" name="sex" required>
+                    <option value="homme">Homme</option>
+                    <option value="femme">Femme</option>
+                  </select>
+                </div>
+                <div class="input-col">
+                  <label for="telephone"><b>Téléphone</b></label>
+                  <input type="tel" [(ngModel)]="selectedPatient.telephone" name="telephone" required>
+                </div>
+              </div>
+
+              <div class="button-group">
+                <button type="button" (click)="updatePatient()" class="btn btn-success">Enregistrer</button>
+                <button type="button" (click)="closeEditPopup()" class="btn btn-secondary cancel">Annuler</button>
+              </div>
+            </form>
+          </div>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+</div>

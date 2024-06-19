@@ -1,0 +1,84 @@
+<c-row>
+  <c-col xs="12">
+    <c-card class="mb-4">
+      <c-card-header ngPreserveWhitespaces>
+        <strong>Ajouter un Patient</strong> <small> (Formulaire d'inscription)</small>
+      </c-card-header>
+      <c-card-body>
+        <p class="text-body-secondary small">
+          Veuillez remplir le formulaire ci-dessous pour ajouter un patient. Assurez-vous que toutes les informations sont correctes avant de soumettre.
+        </p>
+        
+        <form [formGroup]="addPatientForm" (ngSubmit)="onSubmit()" class="row g-3 needs-validation">
+          
+          <c-col md="4">
+            <label cLabel for="cin">CIN</label>
+            <c-input-group class="has-validation">
+              <span cInputGroupText id="inputGroupPrepend">🔢</span>
+              <input formControlName="cin" id="cin" required type="text" class="form-control" />
+              <c-form-feedback *ngIf="addPatientForm.get('cin') && !addPatientForm.get('cin')?.valid && addPatientForm.get('cin')?.touched">Veuillez fournir un CIN valide.</c-form-feedback>
+            </c-input-group>
+          </c-col>
+          
+          <c-col md="4">
+            <label cLabel for="lastName">Nom</label>
+            <c-input-group class="has-validation">
+              <span cInputGroupText id="inputGroupPrepend">👥</span>
+              <input formControlName="lastName" id="lastName" required type="text" class="form-control" />
+              <c-form-feedback *ngIf="addPatientForm.get('lastName') && !addPatientForm.get('lastName')?.valid && addPatientForm.get('lastName')?.touched">Veuillez fournir un nom valide.</c-form-feedback>
+            </c-input-group>
+          </c-col>
+         
+          <c-col md="4">
+            <label cLabel for="firstName">Prénom</label>
+            <c-input-group class="has-validation">
+              <span cInputGroupText id="inputGroupPrepend">👤</span>
+              <input formControlName="firstName" id="firstName" required type="text" class="form-control" />
+              <c-form-feedback *ngIf="addPatientForm.get('firstName') && !addPatientForm.get('firstName')?.valid && addPatientForm.get('firstName')?.touched">Veuillez fournir un prénom valide.</c-form-feedback>
+            </c-input-group>
+          </c-col>
+          
+          <c-col md="4">
+            <label cLabel for="dateNaissance">Date de Naissance</label>
+            <c-input-group class="has-validation">
+              <span cInputGroupText id="inputGroupPrepend">📅</span>
+              <input formControlName="dateNaissance" id="dateNaissance" required type="date" class="form-control" />
+              <c-form-feedback *ngIf="addPatientForm.get('dateNaissance') && !addPatientForm.get('dateNaissance')?.valid && addPatientForm.get('dateNaissance')?.touched">Veuillez fournir une date de naissance valide.</c-form-feedback>
+            </c-input-group>
+          </c-col>
+            
+          <c-col md="4">
+            <label cLabel for="sex">Sexe</label>
+            <c-input-group class="has-validation">
+              <span cInputGroupText id="inputGroupPrepend">⚥</span>
+              <select formControlName="sex" id="sex" required class="form-control">
+                <option value="">Choisir...</option>
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+              </select>
+              <c-form-feedback *ngIf="addPatientForm.get('sex') && !addPatientForm.get('sex')?.valid && addPatientForm.get('sex')?.touched">Veuillez sélectionner un sexe.</c-form-feedback>
+            </c-input-group>
+          </c-col>
+          
+          <c-col md="4">
+            <label cLabel for="telephone">Téléphone</label>
+            <c-input-group class="has-validation">
+              <span cInputGroupText id="inputGroupPrepend">📞</span>
+              <input formControlName="telephone" id="telephone" required type="tel" class="form-control" />
+              <c-form-feedback *ngIf="addPatientForm.get('telephone') && !addPatientForm.get('telephone')?.valid && addPatientForm.get('telephone')?.touched">Veuillez fournir un numéro de téléphone valide.</c-form-feedback>
+            </c-input-group>
+          </c-col>
+          
+          <c-col xs="12">
+            <button cButton class="me-1" color="primary" type="submit" [disabled]="!addPatientForm.valid">
+              Soumettre
+            </button>
+            <button (click)="onReset()" cButton color="secondary" type="reset">
+              Réinitialiser
+            </button>
+          </c-col>
+        </form>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>

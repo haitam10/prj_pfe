@@ -4,13 +4,27 @@ export const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Forms'
+      title: 'Gérer Rendez-vous'
     },
     children: [
       {
         path: '',
         redirectTo: 'form-control',
         pathMatch: 'full'
+      },
+      {
+        path: 'add-rdv',
+        loadComponent: () => import('./add-rdv/add-rdv.component').then(m => m.AddRdvComponent),
+        data: {
+          title: 'Planifier Rendez-vous'
+        }
+      },
+      {
+        path: 'liste-rdv',
+        loadComponent: () => import('./liste-rdv/liste-rdv.component').then(m => m.ListeRdvComponent),
+        data: {
+          title: 'Liste Des Rendez-vous'
+        }
       },
       {
         path: 'form-control',

@@ -4,7 +4,7 @@ export const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Notifications'
+      title: 'Gérer Bulletins'
     },
     children: [
       {
@@ -31,6 +31,27 @@ export const routes: Routes = [
         loadComponent: () => import('./modals/modals.component').then(m => m.ModalsComponent),
         data: {
           title: 'Modal'
+        }
+      },
+      {
+        path: 'prise-en-charge',
+        loadComponent: () => import('./prise-en-charge/prise-en-charge.component').then(m => m.PriseEnChargeComponent),
+        data: {
+          title: 'Prise en charge '
+        }
+      },
+      {
+        path: 'ordonnance',
+        loadComponent: () => import('./ordonnance/ordonnance.component').then(m => m.OrdonnanceComponent),
+        data: {
+          title: 'Ordonnance '
+        }
+      },
+      {
+        path: 'certificat-medicale',
+        loadComponent: () => import('./certificat-medicale/certificat-medicale.component').then(m => m.CertificatMedicaleComponent),
+        data: {
+          title: 'Certificat-medicale '
         }
       },
       {

@@ -19,10 +19,6 @@ export const routes: Routes = [
         loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
       },
       {
-        path: 'theme',
-        loadChildren: () => import('./views/theme/routes').then((m) => m.routes)
-      },
-      {
         path: 'base',
         loadChildren: () => import('./views/base/routes').then((m) => m.routes)
       },
@@ -47,13 +43,14 @@ export const routes: Routes = [
         loadChildren: () => import('./views/widgets/routes').then((m) => m.routes)
       },
       {
-        path: 'charts',
-        loadChildren: () => import('./views/charts/routes').then((m) => m.routes)
+        path: 'profile',
+        loadChildren: () => import('./views/profile/routes').then((m) => m.routes)
       },
       {
         path: 'pages',
         loadChildren: () => import('./views/pages/routes').then((m) => m.routes)
-      }
+      },
+    
     ]
   },
   {
@@ -84,5 +81,6 @@ export const routes: Routes = [
       title: 'Register Page'
     }
   },
+  
   { path: '**', redirectTo: 'dashboard' }
 ];

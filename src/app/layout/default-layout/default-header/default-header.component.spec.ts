@@ -24,10 +24,13 @@ describe('DefaultHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [GridModule, HeaderModule, IconModule, NavModule, BadgeModule, AvatarModule, DropdownModule, BreadcrumbModule, RouterTestingModule, SidebarModule, ProgressModule, ButtonGroupModule, ReactiveFormsModule, DefaultHeaderComponent],
-    providers: [IconSetService]
-})
-      .compileComponents();
+      imports: [
+        GridModule, HeaderModule, IconModule, NavModule, BadgeModule, AvatarModule,
+        DropdownModule, BreadcrumbModule, RouterTestingModule, SidebarModule,
+        ProgressModule, ButtonGroupModule, ReactiveFormsModule, DefaultHeaderComponent
+      ],
+      providers: [IconSetService]
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -41,5 +44,20 @@ describe('DefaultHeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should toggle message visibility when bell icon is clicked', () => {
+    expect(component.showMessages).toBeFalse();
+    component.toggleMessages();
+    expect(component.showMessages).toBeTrue();
+    component.toggleMessages();
+    expect(component.showMessages).toBeFalse();
+  });
+
+  it('should display messages when showMessages is true', () => {
+    component.showMessages = true;
+    fixture.detectChanges();
+    const messages = fixture.nativeElement.querySelectorAll('.messages-dropdown li');
+    expect(messages.length).toBe(5);
   });
 });

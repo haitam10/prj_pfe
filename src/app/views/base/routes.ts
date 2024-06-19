@@ -4,7 +4,7 @@ export const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Base'
+      title: 'Gérer Patients'
     },
     children: [
       {
@@ -52,6 +52,20 @@ export const routes: Routes = [
         loadComponent: () => import('./list-groups/list-groups.component').then(m => m.ListGroupsComponent),
         data: {
           title: 'List Group'
+        }
+      },
+      {
+        path: 'add-patient',
+        loadComponent: () => import('./add-patient/add-patient.component').then(m => m.AddPatientComponent),
+        data: {
+          title: 'Ajouter patient'
+        }
+      },
+      {
+        path: 'liste-patients',
+        loadComponent: () => import('./liste-patients/liste-patients.component').then(m => m.ListePatientsComponent),
+        data: {
+          title: 'Liste Patients'
         }
       },
       {

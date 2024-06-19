@@ -1,0 +1,83 @@
+<c-row>
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-header ngPreserveWhitespaces>
+          <strong>Ajouter un Rendez-vous</strong> <small> (Formulaire de planification)</small>
+        </c-card-header>
+        <c-card-body>
+          <p class="text-body-secondary small">
+            Veuillez remplir le formulaire ci-dessous pour planifier un rendez-vous. Assurez-vous que toutes les informations sont correctes avant de soumettre.
+          </p>
+          
+          <form #addRdvForm="ngForm"
+                (ngSubmit)="onSubmit()"
+                [validated]="formValidated"
+                cForm
+                class="row g-3 needs-validation">
+            
+            <c-col md="4">
+              <label cLabel for="date_rdv">Date du Rendez-vous</label>
+              <c-input-group class="has-validation">
+                <span cInputGroupText id="inputGroupPrepend">📅</span>
+                <input cFormControl id="date_rdv" required type="date" />
+                <c-form-feedback [valid]="false">Veuillez fournir une date valide.</c-form-feedback>
+              </c-input-group>
+            </c-col>
+            
+            <c-col md="4">
+                <label cLabel for="heure">Heure</label>
+                <c-input-group class="has-validation">
+                  <span cInputGroupText id="inputGroupPrepend">⏰</span>
+                  <input cFormControl id="heure" required type="time" />
+                  <c-form-feedback [valid]="false">Veuillez fournir une heure valide.</c-form-feedback>
+                </c-input-group>
+              </c-col>
+           
+            <c-col md="4">
+              <label cLabel for="note">Note</label>
+              <c-input-group class="has-validation">
+                <span cInputGroupText id="inputGroupPrepend">📝</span>
+                <input cFormControl id="note" required type="text" />
+                <c-form-feedback [valid]="false">Veuillez fournir une note valide.</c-form-feedback>
+              </c-input-group>
+            </c-col>
+            
+            <c-col md="4">
+                <label cLabel for="medecin_id">Médecin</label>
+                <c-input-group class="has-validation">
+                  <span cInputGroupText id="inputGroupPrepend">👨‍⚕️</span>
+                  <select cSelect id="medecin_id" required>
+                    <option value="">Choisir...</option>
+                    <option value="1">Dr. Dupont</option>
+                    <option value="2">Dr. Martin</option>
+                    <option value="3">Dr. Leroy</option>
+                  </select>
+                  <c-form-feedback [valid]="false">Veuillez sélectionner un médecin.</c-form-feedback>
+                </c-input-group>
+              </c-col>
+              
+            <c-col md="4">
+              <label cLabel for="patient_id">Patient</label>
+              <c-input-group class="has-validation">
+                <span cInputGroupText id="inputGroupPrepend">👤</span>
+                <select cSelect id="patient_id" required>
+                  <option value="">Choisir...</option>
+                  <option *ngFor="let patient of patients" [value]="patient.cin">{{ patient.cin }}</option>
+                </select>
+                <c-form-feedback [valid]="false">Veuillez sélectionner un patient.</c-form-feedback>
+              </c-input-group>
+            </c-col>
+            
+            <c-col xs="12">
+              <button cButton class="me-1" color="primary" type="submit">
+                Soumettre
+              </button>
+              <button (click)="onReset()" cButton color="secondary" type="reset">
+                Réinitialiser
+              </button>
+            </c-col>
+          </form>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
